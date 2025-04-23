@@ -1,12 +1,12 @@
 import React from "react";
-import './Item.css'
+// import './Item.css'
 import Boton from "./boton";
 
 
-function Item({nombre}){
+function Item({nombre, fecha, hora}){
 return(<>
 
-<p> {nombre}. Creado:   </p>
+<p> {nombre}. Creado: {fecha}, {hora}</p>
 
 <Boton
 texto="Marcar"

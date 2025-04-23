@@ -1,16 +1,20 @@
 import React from "react";
-import Item from './Item.css'
 import Boton from './boton'
+import Item from './item.jsx'
 
 
 function Lista(){
 return(<>
 <Item
 nombre="aaron"
+fecha="22/4/2025"
+hora="10:02"
 />
 
 <Item
-nombre ="tareas"/>
+nombre ="tareas"
+fecha="23/4/2025"
+hora="9:15"/>
 
 
 </>

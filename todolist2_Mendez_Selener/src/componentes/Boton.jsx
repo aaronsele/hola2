@@ -4,7 +4,7 @@ import './Boton.css'
 function Boton({texto, identificador}){
 
     return(<>
-    <button classname={identificador}>
+    <button className={identificador}>
         {texto}
     </button>
     </>

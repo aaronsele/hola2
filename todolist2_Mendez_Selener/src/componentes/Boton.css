@@ -1,0 +1,30 @@
+
+.eliminar, .eliminarCompletadas{
+    padding: 10px 15px;
+    margin-left: 10px;
+    border: none;
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.eliminar:hover, .eliminarCompletadas:hover{
+    background-color:crimson;
+}
+
+.tareaMasRapida:hover, .marcador:hover, .agregar:hover {
+    background-color: #218838;
+}
+
+.tareaMasRapida, .marcador, .agregar{
+    padding: 10px 15px;
+    margin-left: 10px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
