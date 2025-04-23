@@ -1,7 +1,7 @@
 import React from "react";
 import Boton from './boton'
 import Item from './item.jsx'
-
+import './Lista.css'
 
 function Lista(){
 return(<>
@@ -15,7 +15,6 @@ hora="10:02"
 nombre ="tareas"
 fecha="23/4/2025"
 hora="9:15"/>
-
 
 </>
 )

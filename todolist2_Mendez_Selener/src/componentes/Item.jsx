@@ -1,10 +1,11 @@
 import React from "react";
-// import './Item.css'
+import './Item.css'
 import Boton from "./boton";
 
 
 function Item({nombre, fecha, hora}){
 return(<>
+<div className="todo">
 
 <p> {nombre}. Creado: {fecha}, {hora}</p>
 
@@ -17,6 +18,8 @@ identificador="marcador"
 texto="Eliminar"
 identificador="eliminar"
 />
+
+</div>
 
 </>
 )
