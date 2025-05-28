@@ -6,6 +6,7 @@ import Boton from "./componentes/boton";
 
 function App() {
   const [tareas, setTareas] = useState([]);
+  const [tareaRapida, setTareaRapida] = useState(null); 
 
   useEffect(() => {
     const tareasGuardadas = localStorage.getItem("tareas");
@@ -23,7 +24,7 @@ function App() {
       id: Date.now(),
       texto: texto,
       completada: false,
-      tiempo: Math.floor(Math.random() * 100) + 1 // tiempo 
+      tiempo: Math.floor(Math.random() * 100) + 1 // tiempo en minutos
     };
     setTareas([...tareas, nuevaTarea]);
   };
@@ -43,22 +44,20 @@ function App() {
   };
 
   const tareaMasRapida = () => {
-    const tareasCompletadas = tareas.filter(tarea => tarea.completada);
-    
+    const tareasCompletadas = tareas.filter(t => t.completada);
+
     if (tareasCompletadas.length === 0) {
-      alert("No hay tareas completadas todavía.");
+      setTareaRapida(null); 
       return;
     }
-  
-    const tareaConMenorTiempo = tareasCompletadas.reduce((tareaMasRapidaHastaAhora, tareaActual) => {
-      return tareaActual.tiempo < tareaMasRapidaHastaAhora.tiempo
-        ? tareaActual
-        : tareaMasRapidaHastaAhora;
-    });
-  
-    alert(`La tarea completada más rápida es: "${tareaConMenorTiempo.texto}" con ${tareaConMenorTiempo.tiempo} minutos`);
+
+    const tareaConMenorTiempo = tareasCompletadas.reduce((masRapida, actual) =>
+      actual.tiempo < masRapida.tiempo ? actual : masRapida
+    );
+
+    setTareaRapida(tareaConMenorTiempo);
   };
-  
+
   return (
     <>
       <h1>Lista de tareas</h1>
@@ -66,6 +65,13 @@ function App() {
       <Lista tareas={tareas} eliminarTarea={eliminarTarea} marcarTarea={marcarTarea} />
       <Boton texto="Eliminar tareas completadas" onClick={eliminarCompletadas} />
       <Boton texto="Ver tarea más rápida" onClick={tareaMasRapida} />
+
+      
+      {tareaRapida && (
+        <p style={{ marginTop: '20px', color: 'green', fontWeight: 'bold' }}>
+          La tarea completada más rápida es: "{tareaRapida.texto}" con {tareaRapida.tiempo * 60} segundos
+        </p>
+      )}
     </>
   );
 }
