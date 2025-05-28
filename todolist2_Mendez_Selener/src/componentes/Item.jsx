@@ -2,8 +2,8 @@ import React from "react";
 import "./Item.css";
 
 function Item({ tarea, eliminarTarea, marcarTarea }) {
-  const fecha = new Date(tarea.id); // Convertimos el id a fecha
-  const fechaFormateada = fecha.toLocaleString(); // Ej: 28/5/2025, 13:37
+  const fecha = new Date(tarea.id); 
+  const fechaFormateada = fecha.toLocaleString(); 
 
   return (
     <li className="todo">
