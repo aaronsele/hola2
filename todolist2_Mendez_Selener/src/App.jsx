@@ -7,7 +7,7 @@ import Boton from "./componentes/boton";
 function App() {
   const [tareas, setTareas] = useState([]);
   const [tareaRapida, setTareaRapida] = useState(null);
-  const [filtro, setFiltro] = useState("todas"); // 'todas' | 'completadas' | 'incompletas'
+  const [filtro, setFiltro] = useState("todas"); 
 
   useEffect(() => {
     const tareasGuardadas = localStorage.getItem("tareas");
@@ -25,8 +25,8 @@ function App() {
       id: Date.now(),
       texto: texto,
       completada: false,
-      creada: Date.now(), // fecha de creación
-      tiempo: null // se calcula al completar
+      creada: Date.now(), 
+      tiempo: null 
     };
     setTareas([...tareas, nuevaTarea]);
   };
@@ -41,7 +41,7 @@ function App() {
         const nuevaCompletada = !tarea.completada;
 
         if (nuevaCompletada && tarea.tiempo === null) {
-          const tiempoReal = Math.floor((Date.now() - tarea.creada) / 1000); // en segundos
+          const tiempoReal = Math.floor((Date.now() - tarea.creada) / 1000); 
           return { ...tarea, completada: true, tiempo: tiempoReal };
         }
 
@@ -95,7 +95,7 @@ function App() {
 
       {tareaRapida && (
         <p style={{ marginTop: '20px', color: 'green', fontWeight: 'bold' }}>
-          La tarea completada más rápida es: "{tareaRapida.texto}" con {tareaRapida.tiempo} segundos
+          La tarea completada más rápida es: "{tareaRapida.texto}" en {tareaRapida.tiempo} segundos
         </p>
       )}
     </>
