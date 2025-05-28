@@ -1,29 +1,18 @@
 import React from "react";
-import './Item.css'
-import Boton from "./boton";
+import "./Item.css";
 
-
-function Item({nombre, fecha, hora}){
-return(<>
-<div className="todo">
-
-<p> {nombre}. Creado: {fecha}, {hora}</p>
-
-<Boton
-texto="Marcar"
-identificador="marcador"
-/>
-
-<Boton
-texto="Eliminar"
-identificador="eliminar"
-/>
-
-</div>
-
-</>
-)
-
+function Item({ tarea, eliminarTarea, marcarTarea }) {
+  return (
+    <li className="todo">
+      <span style={{ textDecoration: tarea.completada ? "line-through" : "none" }}>
+        {tarea.texto}
+      </span>
+      <div>
+        <button className="marcador" onClick={() => marcarTarea(tarea.id)}>COMPLETADA</button>
+        <button className="eliminar" onClick={() => eliminarTarea(tarea.id)}>ELIMINAR</button>
+      </div>
+    </li>
+  );
 }
 
-export default Item
+export default Item;

@@ -1,15 +1,12 @@
 import React from "react";
-import './Boton.css'
+import "./Boton.css";
 
-function Boton({texto, identificador}){
-
-    return(<>
-    <button className={identificador}>
-        {texto}
+function Boton({ texto, tipo = "agregar", onClick }) {
+  return (
+    <button className={tipo} onClick={onClick}>
+      {texto}
     </button>
-    </>
-    )
+  );
 }
 
-export default Boton 
-
+export default Boton;
