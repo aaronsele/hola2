@@ -7,26 +7,30 @@ import Boton from "./componentes/boton";
 function App() {
   const [tareas, setTareas] = useState([]);
   const [tareaRapida, setTareaRapida] = useState(null);
-  const [filtro, setFiltro] = useState("todas"); 
+  const [filtro, setFiltro] = useState("todas");
+  const [cargo, setCargo] = useState(false);
 
   useEffect(() => {
     const tareasGuardadas = localStorage.getItem("tareas");
     if (tareasGuardadas) {
       setTareas(JSON.parse(tareasGuardadas));
     }
+    setCargo(true); 
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("tareas", JSON.stringify(tareas));
-  }, [tareas]);
+    if (cargo) {
+      localStorage.setItem("tareas", JSON.stringify(tareas));
+    }
+  }, [tareas, cargo]);
 
   const agregarTarea = (texto) => {
     const nuevaTarea = {
       id: Date.now(),
       texto: texto,
       completada: false,
-      creada: Date.now(), 
-      tiempo: null 
+      creada: Date.now(),
+      tiempo: null
     };
     setTareas([...tareas, nuevaTarea]);
   };
@@ -41,7 +45,7 @@ function App() {
         const nuevaCompletada = !tarea.completada;
 
         if (nuevaCompletada && tarea.tiempo === null) {
-          const tiempoReal = Math.floor((Date.now() - tarea.creada) / 1000); 
+          const tiempoReal = Math.floor((Date.now() - tarea.creada) / 1000);
           return { ...tarea, completada: true, tiempo: tiempoReal };
         }
 
@@ -73,7 +77,7 @@ function App() {
   const tareasFiltradas = tareas.filter(tarea => {
     if (filtro === "completadas") return tarea.completada;
     if (filtro === "incompletas") return !tarea.completada;
-    return true; 
+    return true;
   });
 
   return (
@@ -81,7 +85,6 @@ function App() {
       <h1>Lista de tareas</h1>
       <Form agregarTarea={agregarTarea} />
 
-      
       <div style={{ margin: "10px 0" }}>
         <button onClick={() => setFiltro("todas")} style={{ fontWeight: filtro === "todas" ? "bold" : "normal" }}>Todas</button>
         <button onClick={() => setFiltro("completadas")} style={{ fontWeight: filtro === "completadas" ? "bold" : "normal" }}>Completadas</button>
